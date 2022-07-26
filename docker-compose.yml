@@ -46,7 +46,7 @@ services:
         condition: service_healthy
       sindit_neo4j_kg:
         condition: service_healthy
-    entrypoint: bash
+    entrypoint: sleep infinity
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
