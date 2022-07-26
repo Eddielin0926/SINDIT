@@ -28,4 +28,5 @@ def get_layout():
             html.Div(id="tabs-content"),
         ],
         width=3,
+        style={"min-width": "300px"},
     )

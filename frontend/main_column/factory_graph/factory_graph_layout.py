@@ -163,23 +163,21 @@ def _create_cytoscape_relationship(
     }
 
 
-def get_cytoscape_elements(machines_deep: List[AssetNodeDeep]):
+def get_cytoscape_elements(assets_deep: List[AssetNodeDeep]):
     cytoscape_elements = []
 
-    for machine in machines_deep:
-        # Machines:
-        cytoscape_elements.append(
-            _create_cytoscape_node(machine, NodeTypes.ASSET.value)
-        )
+    for asset in assets_deep:
+        # Assets (machines):
+        cytoscape_elements.append(_create_cytoscape_node(asset, NodeTypes.ASSET.value))
 
-        for timeseries in machine.timeseries:
+        for timeseries in asset.timeseries:
             # Timeseries:
             cytoscape_elements.append(
                 _create_cytoscape_node(timeseries, NodeTypes.TIMESERIES_INPUT.value)
             )
             cytoscape_elements.append(
                 _create_cytoscape_relationship(
-                    machine, timeseries, RelationshipTypes.HAS_TIMESERIES.value
+                    asset, timeseries, RelationshipTypes.HAS_TIMESERIES.value
                 )
             )
 
@@ -193,7 +191,7 @@ def get_cytoscape_elements(machines_deep: List[AssetNodeDeep]):
                 _create_cytoscape_relationship(
                     timeseries,
                     timeseries.db_connection,
-                    RelationshipTypes.DB_ACCESS.value,
+                    RelationshipTypes.TIMESERIES_DB_ACCESS.value,
                 )
             )
 
@@ -219,6 +217,63 @@ def get_cytoscape_elements(machines_deep: List[AssetNodeDeep]):
                 cytoscape_elements.append(
                     _create_cytoscape_relationship(
                         timeseries, timeseries.unit, RelationshipTypes.HAS_UNIT.value
+                    )
+                )
+        for suppl_file in asset.supplementary_files:
+            # Supplementary file:
+            cytoscape_elements.append(
+                _create_cytoscape_node(suppl_file, NodeTypes.SUPPLEMENTARY_FILE.value)
+            )
+            cytoscape_elements.append(
+                _create_cytoscape_relationship(
+                    asset, suppl_file, RelationshipTypes.HAS_SUPPLEMENTARY_FILE.value
+                )
+            )
+
+            # Database connection:
+            cytoscape_elements.append(
+                _create_cytoscape_node(
+                    suppl_file.db_connection, NodeTypes.DATABASE_CONNECTION.value
+                )
+            )
+            cytoscape_elements.append(
+                _create_cytoscape_relationship(
+                    suppl_file,
+                    suppl_file.db_connection,
+                    RelationshipTypes.FILE_DB_ACCESS.value,
+                )
+            )
+
+            # Alternative formats (always connected to one main type)
+            for secondary_suppl_file in suppl_file.secondary_formats:
+                # Supplementary file (alternative format):
+                secondary_file_node = _create_cytoscape_node(
+                    secondary_suppl_file, NodeTypes.SUPPLEMENTARY_FILE.value
+                )
+
+                secondary_file_node["classes"].append("")
+
+                cytoscape_elements.append(secondary_file_node)
+                cytoscape_elements.append(
+                    _create_cytoscape_relationship(
+                        suppl_file,
+                        secondary_suppl_file,
+                        RelationshipTypes.SECONDARY_FORMAT.value,
+                    )
+                )
+
+                # Database connection:
+                cytoscape_elements.append(
+                    _create_cytoscape_node(
+                        secondary_suppl_file.db_connection,
+                        NodeTypes.DATABASE_CONNECTION.value,
+                    )
+                )
+                cytoscape_elements.append(
+                    _create_cytoscape_relationship(
+                        secondary_suppl_file,
+                        secondary_suppl_file.db_connection,
+                        RelationshipTypes.FILE_DB_ACCESS.value,
                     )
                 )
 

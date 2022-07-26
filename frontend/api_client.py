@@ -16,7 +16,7 @@ API_URI = (
 )
 
 
-def get(relative_path: str, **kwargs):
+def get_json(relative_path: str, **kwargs):
     """
     Get request to the specified api endpoint
     :param relative_path:
@@ -37,7 +37,7 @@ def get_dataframe(relative_path: str, **kwargs):
     :param relative_path:
     :return:
     """
-    df_dict = get(relative_path, **kwargs)
+    df_dict = get_json(relative_path, **kwargs)
 
     df = pd.DataFrame.from_dict(df_dict)
 
@@ -55,6 +55,24 @@ def get_dataframe(relative_path: str, **kwargs):
     )
 
     return df
+
+
+def get_raw(relative_path: str, **kwargs):
+    """
+    Get request to the specified api endpoint
+    :param relative_path:
+    :return: the raw response
+    """
+    return requests.get(API_URI + relative_path, params=kwargs).content
+
+
+def get_str(relative_path: str, **kwargs):
+    """
+    Get request to the specified api endpoint
+    :param relative_path:
+    :return: the response as string
+    """
+    return requests.get(API_URI + relative_path, params=kwargs).text
 
 
 def patch(relative_path: str, **kwargs):

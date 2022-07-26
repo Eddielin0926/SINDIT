@@ -24,7 +24,7 @@ TIMESERIES_MAX_DISPLAYED_ENTRIES = get_configuration_float(
 )
 
 
-print("Initializing sensor callbacks...")
+print("Initializing timeseries callbacks...")
 
 
 @app.callback(
@@ -126,7 +126,7 @@ def update_timeseries_graph(
 
     # API call for the count of readings
     readings_count = int(
-        api_client.get(
+        api_client.get_json(
             relative_path="/timeseries/entries_count",
             iri=selected_el.iri,
             duration=duration.total_seconds(),
