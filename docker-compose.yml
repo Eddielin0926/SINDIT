@@ -45,6 +45,8 @@ services:
       timeout: 10s
       retries: 5
     entrypoint: python dt_backend.py
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   sindit_dt_frontend:
     build: .
