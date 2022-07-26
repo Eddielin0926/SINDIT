@@ -85,7 +85,7 @@ coming soon
 
 Initializes the DT for the fischertechnik learning factory. Execute inside the DT-Backend container after starting all services via: 
 
-`docker-compose exec sindit_dt_backend python init_learning_factory_from_cypher_file.py`
+`docker-compose exec sindit_dt_standby_environment python init_learning_factory_from_cypher_file.py`
 
 After this, for the DT-services to connect to the newly created timeseries connections, restart the services with `docker-compose restart sindit_dt_backend sindit_dt_frontend` (simply restarting all containers does lead to the dependencies for database access not being resolved).
 

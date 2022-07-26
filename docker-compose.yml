@@ -23,6 +23,33 @@ services:
       - 7475:7474
       - 7688:7687
 
+  sindit_minio_s3:
+    extends:
+      file: docker-compose.databases.yml
+      service: sindit_minio_s3
+
+    ports:
+      - "9000:9000"
+      - "9099:9099"
+
+  sindit_dt_standby_environment:
+    build: .
+    hostname: sindit-dt-standby-environment
+    container_name: sindit_dt_standby_environment
+    mem_limit: 6G
+    env_file:
+      - "environment_and_configuration/deployment_environment_backend.env"
+    networks:
+      - sindit_network
+    depends_on:
+      sindit_influx_db:
+        condition: service_healthy
+      sindit_neo4j_kg:
+        condition: service_healthy
+    entrypoint: bash
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   sindit_dt_backend:
     build: .
     hostname: sindit-dt-backend
