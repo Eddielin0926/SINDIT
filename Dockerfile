@@ -19,10 +19,3 @@ EXPOSE 8050
 EXPOSE 8000
 
 ENTRYPOINT ["/bin/bash", "/opt/sindit/main.sh" ]
-
-
-
-
-
-
-

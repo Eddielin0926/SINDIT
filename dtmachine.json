@@ -1,0 +1,48 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:sindit:dtmachine;2",
+  "@type": "Interface",
+  "displayName": "dtmachine",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "process",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "type",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "num_parts_in",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "num_parts_out",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "amount_in",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "amount_out",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "processing_time",
+      "schema": "duration"
+    },
+    {
+      "@type": "Relationship",
+      "name": "next",
+      "target": "dtmi:sindit:dtmachine;2"
+    }
+  ]
+}

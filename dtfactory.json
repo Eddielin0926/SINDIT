@@ -1,0 +1,23 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:sindit:dtfactory;1",
+  "@type": "Interface",
+  "displayName": "dtfactory",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "simulation_time",
+      "schema": "duration"
+    },
+    {
+      "@type": "Relationship",
+      "name": "contains_machine",
+      "target": "dtmi:sindit:dtmachine;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "contains_queue",
+      "target": "dtmi:sindit:dtqueue;1"
+    } 
+  ]
+}

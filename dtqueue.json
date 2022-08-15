@@ -1,0 +1,33 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:sindit:dtqueue;1",
+  "@type": "Interface",
+  "displayName": "dtqueue",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "process",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "type",
+      "schema": "string"
+    },
+    {
+      "@type": "Relationship",
+      "name": "from",
+      "target": "dtmi:sindit:dtmachine;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "to",
+      "target": "dtmi:sindit:dtmachine;1"
+    },
+    {
+      "@type": "Property",
+      "name": "capacity",
+      "schema": "integer"
+    }
+  ]
+}
