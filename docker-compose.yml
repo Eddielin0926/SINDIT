@@ -106,6 +106,8 @@ services:
     mem_limit: 5G
     environment:
       ENVIRONMENT_FILE: "docker_deployment.env"
+    env_file:
+      - ./environment/azure_digital_twin.env
     ports:
       - 8050:8050
       - 8000:8000

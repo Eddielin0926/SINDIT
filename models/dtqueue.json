@@ -1,6 +1,6 @@
 {
   "@context": "dtmi:dtdl:context;2",
-  "@id": "dtmi:sindit:dtqueue;1",
+  "@id": "dtmi:com:azure:Adt:Queue;1",
   "@type": "Interface",
   "displayName": "dtqueue",
   "contents": [

@@ -1,0 +1,19 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:com:azure:Adt:Factory;1",
+  "@type": "Interface",
+  "displayName": "Process Twin Factory",
+  "description": "A basic factory model for process twin.",
+  "contents": [
+    {
+      "@type": "Relationship",
+      "name": "containMachine",
+      "target": "dtmi:com:azure:Adt:Machine;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "containSensor",
+      "target": "dtmi:com:azure:Adt:Sensor;1"
+    }
+  ]
+}

@@ -160,7 +160,7 @@ const Dashboard: React.FunctionComponent = () => {
         tokens={{ childrenGap: 5 }}
         style={{ flex: 1, padding: 10 }}
       >
-        <TextField label="Simulation duration" />
+        <TextField required label="Simulation duration" placeholder="Please enter simulation hours"/>
         <Stack horizontal horizontalAlign="end" tokens={{ childrenGap: 20 }}>
           <DefaultButton text="Reset" onClick={() => alert("Reset")} />
           <PrimaryButton text="Simulate" onClick={() => alert("Simulate")} />

@@ -1,0 +1,27 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:com:azure:Adt:Sensor;1",
+  "@type": "Interface",
+  "displayName": "Process Twin Sensor",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "process",
+      "description": "A tag to identify different processes.",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "name",
+      "description": "The name of the sensor",
+      "schema": "string"
+    },
+    {
+      "@type": "Telemetry",
+      "name": "temperature",
+      "displayName": "Temperature",
+      "description": "Sensor of temperature.",
+      "schema": "double"
+    }
+  ]
+}

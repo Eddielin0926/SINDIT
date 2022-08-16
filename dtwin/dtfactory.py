@@ -722,9 +722,7 @@ class dtFactory(object):
             nx.draw(self.graph, node_color='lightblue', 
                 with_labels=True, 
                 node_size=500)
-        
 
-    
     def cytoscape_json_data(self):
         """Returns data in Cytoscape JSON format (cyjs).
         

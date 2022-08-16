@@ -1,0 +1,195 @@
+{
+  "@context": "dtmi:dtdl:context;2",
+  "@id": "dtmi:com:azure:Adt:Machine;1",
+  "@type": "Interface",
+  "displayName": "Process Twin Machine",
+  "description": "A basic machine model for process twin.",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "process",
+      "description": "A tag to identify different processes.",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "name",
+      "description": "The name of the machine",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "description",
+      "description": "The description of the machine",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "group",
+      "description": "A tag to identify different groups.",
+      "schema": "dtmi:com:azure:Adt:Group;1"
+    },
+    {
+      "@type": "Property",
+      "name": "type",
+      "description": "Define type of machine for different functionality",
+      "schema": "dtmi:com:azure:Adt:Type;1"
+    },
+    {
+      "@type": "Property",
+      "name": "numPartsIn",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "numPartsOut",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "amountIn",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "amountOut",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "processingTime",
+      "description": "The duration of the machine to produce a part.",
+      "schema": "integer"
+    },
+    {
+      "@type": "Relationship",
+      "name": "nextMachine",
+      "description": "The next machine to pass down parts",
+      "target": "dtmi:com:azure:Adt:Machine;1",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "group",
+          "schema": "dtmi:com:azure:Adt:Group;1"
+        },
+        {
+          "@type": "Property",
+          "name": "type",
+          "schema": "dtmi:com:azure:Adt:Type;1"
+        },
+        {
+          "@type": "Property",
+          "name": "capacity",
+          "schema": "integer"
+        }
+      ]
+    },
+    {
+      "@type": "Relationship",
+      "name": "containSensor",
+      "description": "The sensors attach to the machine",
+      "target": "dtmi:com:azure:Adt:Sensor;1"
+    }
+  ],
+  "schemas": [
+    {
+      "@id": "dtmi:com:azure:Adt:Group;1",
+      "@type": "Enum",
+      "valueSchema": "integer",
+      "enumValues": [
+        {
+          "name": "none",
+          "displayName": "None",
+          "enumValue": 0
+        },
+        {
+          "name": "containerGroup",
+          "displayName": "Container Group",
+          "enumValue": 1
+        },
+        {
+          "name": "bufferGroup",
+          "displayName": "Buffer Group",
+          "enumValue": 2
+        }
+      ]
+    },
+    {
+      "@id": "dtmi:com:azure:Adt:Type;1",
+      "@type": "Enum",
+      "valueSchema": "integer",
+      "enumValues": [
+        {
+          "name": "none",
+          "displayName": "None",
+          "enumValue": 0
+        },
+        {
+          "name": "machine",
+          "displayName": "Machine",
+          "enumValue": 1
+        },
+        {
+          "name": "source",
+          "displayName": "Source",
+          "enumValue": 2
+        },
+        {
+          "name": "exit",
+          "displayName": "Exit",
+          "enumValue": 3
+        },
+        {
+          "name": "process",
+          "displayName": "Process",
+          "enumValue": 4
+        },
+        {
+          "name": "sensor",
+          "displayName": "Sensors",
+          "enumValue": 5
+        },
+        {
+          "name": "singlePart",
+          "displayName": "Single Part",
+          "enumValue": 6
+        },
+        {
+          "name": "processedPart",
+          "displayName": "Processed Part",
+          "enumValue": 7
+        },
+        {
+          "name": "part",
+          "displayName": "Part",
+          "enumValue": 8
+        },
+        {
+          "name": "temperature",
+          "displayName": "Temperature",
+          "enumValue": 9
+        },
+        {
+          "name": "vibration",
+          "displayName": "Vibration",
+          "enumValue": 10
+        },
+        {
+          "name": "butter",
+          "displayName": "Buffer",
+          "enumValue": 11
+        },
+        {
+          "name": "container",
+          "displayName": "Container",
+          "enumValue": 12
+        },
+        {
+          "name": "unknown",
+          "displayName": "Unknown",
+          "enumValue": 13
+        }
+      ]
+    }
+  ]
+}
