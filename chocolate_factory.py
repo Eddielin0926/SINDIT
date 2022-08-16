@@ -107,7 +107,7 @@ class dtChocFac(dtFactory):
         # make a graph
         self.populate_networkx_graph()
 
-        # setting up the parts inventory:
+        # setting up the parts inventory
         NUM_OF_PARTS = 0
         init_parts = []
         if PARTS_NEED_AUTH.lower() == 'true':
