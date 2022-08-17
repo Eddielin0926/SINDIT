@@ -53,8 +53,7 @@ class DigitalTwin():
     def get_relationship(self, model_id):
         return self.service_client.list_relationships(model_id)
 
-# TODO: 'name' property should be remove from the dtdl file
-
+# TODO: 'name' property should be remove from the dtdl file. It is confusing that using both `$dtId` and `name`
 
 class adtFac(dtFactory):
     def __init__(self, name='SINTEF factory', graph=nx.DiGraph(), digital_twin=DigitalTwin(), env=simpy.Environment(), sim_hours=40):
@@ -98,7 +97,7 @@ class adtFac(dtFactory):
         dt_machines = []
         for machine in machines:
             # Find every relateship for the machine
-            relationship = self.adt.get_relationship(twin['$dtId'])
+            relationship = self.adt.get_relationship(machine['$dtId'])
             contain_sensors = []
             for relp in relationship:
                 if relp['$relationshipName'] == 'containSensor':
@@ -111,7 +110,7 @@ class adtFac(dtFactory):
                           sensors=filter(
                               lambda s: s.name in contain_sensors, dt_sensors),
                           description=machine['description'],
-                          type=machine['type'],  # FIXME: use dtType instead
+                          type=dtTypes(int(machine['type'])),
                           num_parts_in=machine['numPartsIn'],
                           num_parts_out=machine['numPartsOut'],
                           amount_in=machine['amountIn'],
@@ -148,8 +147,8 @@ class adtFac(dtFactory):
         part_g.delete_all()
 
         # set the parts graph db as we have a buffer there
-        self.get_machine_by_name('M4').py2neo_graph = part_g
-        self.get_machine_by_name('M5').py2neo_graph = part_g
+        # self.get_machine_by_name('M4').py2neo_graph = part_g
+        # self.get_machine_by_name('M5').py2neo_graph = part_g
 
         ret_val = self.populate_networkx_graph()
         return True
@@ -165,7 +164,7 @@ def main():
 
     # store as json file
     adtfac.serialize(serial_type="json",
-                     file_path_or_uri=f'{adtFac.name}.json')
+                     file_path_or_uri='adtFac.json')
 
 
 if __name__ == '__main__':

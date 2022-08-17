@@ -181,7 +181,9 @@ def run_factory(sim_time:int, num_entry_amount:int):
     # Discrete event sumulation     
     sim_results = fac.run()
        
-    return sim_results    
+    return sim_results
+
+
 if __name__ == '__main__':
 
 
